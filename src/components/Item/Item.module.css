@@ -1,0 +1,21 @@
+.Item {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  padding: 0 0.5rem;
+  padding-right: 0;
+}
+
+.btn-delete {
+  position: relative;
+  top: 2px;
+  right: 2px;
+  background-color: red;
+  color: white;
+  border: 1px solid black;
+  height: max-content;
+}
+
+.btn-delete:active {
+  transform: scale(80%);
+}
