@@ -1,18 +1,26 @@
-import { Switch, Route } from "react-router-dom";
-import AddCategoryForm from "./components/AddCategoryForm/AddCategoryForm";
+import React, { Suspense } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import Loading from "./components/UI/Loading/Loading";
 
 import Layout from "./components/Layout/Layout";
-import List from "./components/List/List";
+
+const List = React.lazy(() => import("./components/List/List"));
+const AddCategoryForm = React.lazy(() =>
+  import("./components/AddCategoryForm/AddCategoryForm")
+);
 
 function App() {
   return (
     <Layout>
-      <Switch>
-        <Route exact path="/">
-          <List />
-        </Route>
-        <Route path="/add-category" component={AddCategoryForm} />
-      </Switch>
+      <Suspense fallback={<Loading />}>
+        <Switch>
+          <Route exact path="/">
+            <List />
+          </Route>
+          <Route path="/add-category" component={AddCategoryForm} />
+          <Redirect to="/" />
+        </Switch>
+      </Suspense>
     </Layout>
   );
 }
